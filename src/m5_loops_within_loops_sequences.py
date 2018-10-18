@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in SEQUENCES-OF-SUBSEQUENCES problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Timothy Li.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -38,7 +38,7 @@ def main():
 def run_test_integers():
     """ Tests the    integers    function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  integers  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test beyond those we wrote.
     #
@@ -71,6 +71,19 @@ def run_test_integers():
     print('Expected is:', expected)
     print('Actual is:  ', answer)
 
+    # Test 2:
+    expected = [3, 1, 4, 10, 10, 1, 3, 4, 30]
+    answer = integers([(3, 1, 4),
+                       (10, 'hi', 10),
+                       [1, 2.5, 3, 4],
+                       'hello',
+                       [],
+                       ['oops'],
+                       [[55], [44]],
+                       [30, 'h']
+                       ])
+    print('Expected is:', expected)
+    print('Actual is:  ', answer)
 
 def integers(sequence_of_sequences):
     """
@@ -95,7 +108,7 @@ def integers(sequence_of_sequences):
       :rtype: list of int
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -119,6 +132,12 @@ def integers(sequence_of_sequences):
     #    TIME ESTIMATE:  10 minutes.
     # ------------------------------------------------------------------
 
+    l = []
+    for i in range(len(sequence_of_sequences)):
+        for j in range(len(sequence_of_sequences[i])):
+            if type(sequence_of_sequences[i][j]) is int:
+                l.append(sequence_of_sequences[i][j])
+    return l
 
 def run_test_big_letters():
     """ Tests the    big_letters    function. """
@@ -155,6 +174,28 @@ def run_test_big_letters():
                           'OoPs'  # OP
                           'D',  # D
                           'OOps'  # OO
+                          ])
+    print('Expected is:', expected)
+    print('Actual is:  ', answer)
+
+    # Test 2:
+    expected = 'O'
+    answer = big_letters([(3, 1, 4),  # not a string
+                          'Ok what is',  # OTSSS
+                          (10, 'Ok what is ThiSSS?', 10),  # not a string
+                          [],  # not a string
+                          ['oops'],  # not a string
+                          'oops',  #
+                          ['OOPS'],  # not a string
+                          '1 111 !',  # OOPS
+                          '1',  # A
+                          'oo11 $$&*#%&&',  # PS
+                          '2',  # B
+                          '2',  # OS
+                          '3',  # C
+                          'oo'  # OP
+                          '1',  # D
+                          'asd'  # OO
                           ])
     print('Expected is:', expected)
     print('Actual is:  ', answer)
@@ -211,6 +252,14 @@ def big_letters(sequence_of_sequences):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:  12 minutes.
     # ------------------------------------------------------------------
+
+    s = ""
+    for i in range(len(sequence_of_sequences)):
+        if type(sequence_of_sequences[i]) is str:
+            for k in range(len(sequence_of_sequences[i])):
+                if sequence_of_sequences[i][k].isupper():
+                        s += sequence_of_sequences[i][k]
+    return s
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
